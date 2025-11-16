@@ -135,7 +135,7 @@ class RedditTelegramBot:
             if hasattr(post, 'selftext') and post.selftext:
                 content = post.selftext[:300] + "..." if len(post.selftext) > 300 else post.selftext
             
-            msg = f"Keyword: {keyword}\n\n"
+            msg = f"New post about {keyword.upper()}\n\n"
             msg += f"{title}\n"
             msg += f"u/{post.author} | r/{post.subreddit}\n"
             if content:
@@ -145,7 +145,7 @@ class RedditTelegramBot:
             return msg
         except Exception as e:
             logger.error(f"Error formatting notification: {e}")
-            return f"Keyword: {keyword}\n\nError formatting notification"
+            return f"New post about {keyword.upper()}\n\nError formatting notification"
 
     async def send_message(self, text: str):
         """Send message to Telegram"""
